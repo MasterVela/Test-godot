@@ -55,11 +55,11 @@ func _unhandled_input(event):
 				Direction.x += 1
 	if event is InputEventKey and not event.pressed:
 		match event.scancode:
-			KEY_Z:
+			KEY_W:
 				Direction.z += 1
 			KEY_S:
 				Direction.z -= 1
-			KEY_Q:
+			KEY_A:
 				Direction.x += 1
 			KEY_D:
 				Direction.x -= 1

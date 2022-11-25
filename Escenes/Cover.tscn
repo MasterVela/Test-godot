@@ -49,4 +49,10 @@ volume_db = -30.151
 pitch_scale = 1.64
 autoplay = true
 
+[node name="PlayerName" type="TextEdit" parent="."]
+margin_left = 357.0
+margin_top = 281.0
+margin_right = 676.0
+margin_bottom = 343.0
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Textures/texture_08.png" type="Texture" id=1]
 [ext_resource path="res://Escenes/CharacterBarbarian.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Escenes/treeLarge.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Escenes/Explosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Escenes/3DGame.gd" type="Script" id=5]
 
 [sub_resource type="PlaneMesh" id=2]
 size = Vector2( 100, 100 )
@@ -27,18 +29,25 @@ extents = Vector3( 1, 0.1, 1 )
 albedo_color = Color( 0.847059, 0.223529, 0.223529, 1 )
 
 [sub_resource type="ProceduralSky" id=8]
-sky_top_color = Color( 1, 1, 1, 1 )
-sky_horizon_color = Color( 0.909804, 0.894118, 0.992157, 1 )
+sky_top_color = Color( 0.427451, 0.431373, 0.552941, 1 )
+sky_horizon_color = Color( 0.501961, 0.458824, 0.729412, 1 )
 sky_energy = 64.0
 sun_energy = 0.0
 
 [sub_resource type="Environment" id=9]
 background_mode = 2
 background_sky = SubResource( 8 )
+ambient_light_color = Color( 0.654902, 0.317647, 0.317647, 1 )
+fog_enabled = true
+fog_depth_begin = 0.0
+fog_depth_end = 61.9
+fog_depth_curve = 0.87055
 
 [node name="3DGame" type="Spatial"]
+script = ExtResource( 5 )
 
 [node name="Floor2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3342, 0.218072, -4.45127 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
@@ -51,9 +60,10 @@ mesh = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36093, 21.261 )
 
 [node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64087, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
-transform = Transform( 48.9617, 0, 0, 0, 1, 0, 0, 0, 48.8489, 0, 0, 0 )
+transform = Transform( 48.9617, 0, 0, 0, 1, 0, 0, 0, 48.8489, 0, -1.27313, 0 )
 shape = SubResource( 7 )
 
 [node name="Balls" type="Spatial" parent="."]
@@ -69,12 +79,14 @@ mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
 [node name="Ball4" type="RigidBody" parent="Balls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.44303, 0 )
+transform = Transform( 1.00536, 0, 0, 0, 1.00536, 0, 0, 0, 1.00536, -2.80892, 4.54839, -9.13508 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Balls/Ball4"]
+transform = Transform( 1, 0, 0, 0, 2.61226, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Balls/Ball4"]
+transform = Transform( 1, 0, 0, 0, 2.56994, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
@@ -141,6 +153,16 @@ material/0 = SubResource( 6 )
 [node name="CharacterBarbarian" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.1, 12.784 )
 
+[node name="SpotLight" type="SpotLight" parent="CharacterBarbarian"]
+transform = Transform( -1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 5.05286, 0 )
+visible = false
+light_energy = 1.954
+light_indirect_energy = 1.294
+light_specular = 3.069
+shadow_enabled = true
+spot_range = 12.802
+spot_angle = 49.13
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 9 )
 
@@ -163,3 +185,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.52901, 0.100107, 2.70788 )
 
 [node name="treeLarge5" parent="MapElements" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68601, 0.100107, 12.0862 )
+
+[node name="Explosion" parent="." instance=ExtResource( 4 )]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -1, 3.55271e-15, -8.74228e-08, -6.4097e-08, 0.68003, 0.733184, 5.94501e-08, 0.733184, -0.68003, 1.42109e-14, 5.07645, -21.0371 )
+light_energy = 0.486
+light_indirect_energy = 0.0
+shadow_enabled = true

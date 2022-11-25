@@ -1,4 +1,4 @@
-extends Control
+extends Spatial
 
 
 # Declare member variables here. Examples:
@@ -14,8 +14,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-
-func _on_Button_pressed():
-	Globals.player_name = $PlayerName.text
-	get_tree().change_scene("res://Escenes/3DGame.tscn");

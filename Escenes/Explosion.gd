@@ -1,4 +1,4 @@
-extends Control
+extends CPUParticles
 
 
 # Declare member variables here. Examples:
@@ -16,6 +16,5 @@ func _ready():
 #	pass
 
 
-func _on_Button_pressed():
-	Globals.player_name = $PlayerName.text
-	get_tree().change_scene("res://Escenes/3DGame.tscn");
+func _on_Area_body_entered(body):
+	emitting = true

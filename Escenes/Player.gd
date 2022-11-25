@@ -5,8 +5,8 @@ var bullet_node = preload("res://Escenes/Bullet.tscn")
 export var speed = 350
 
 func _ready():
-	print("hello world")
 	Globals.Player = self
+	$PlayerName.text = Globals.player.name
 
 func _process(delta):
 	$Gun.look_at(get_global_mouse_position())

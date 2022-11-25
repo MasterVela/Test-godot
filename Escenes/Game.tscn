@@ -42,6 +42,14 @@ collision_mask = 24
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource( 2 )
 
+[node name="PlayerName" type="Label" parent="Player"]
+margin_left = -53.2611
+margin_top = -65.0
+margin_right = 53.7389
+margin_bottom = -36.0
+align = 1
+valign = 1
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 3 )]
